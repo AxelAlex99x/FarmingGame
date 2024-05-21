@@ -18,6 +18,11 @@ public class Land : MonoBehaviour, ITimeTracker
     public GameObject select;
 
     GameTimeStamp timeWatered;
+
+    [Header("Crops")]
+    public GameObject cropPrefab;
+
+    CropBehaviour cropPlanted = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +69,12 @@ public class Land : MonoBehaviour, ITimeTracker
     public void Interact()
     {
         Itemdata toolSlot = InventoryManager.Instance.eqquipedtool;
+
+        if(toolSlot == null ) 
+        {
+            return;
+        }
+
         EquipmentData equipmentTool = toolSlot as EquipmentData;
 
         if (equipmentTool != null) 
@@ -80,6 +91,20 @@ public class Land : MonoBehaviour, ITimeTracker
                     SwitchLandStatus(LandStatus.Watered);
                     break;
             }
+            return;
+        }
+
+        SeedData seedTool = toolSlot as SeedData;
+
+        if(seedTool != null && lstatus != LandStatus.Soil && cropPlanted == null)
+        {
+            GameObject cropObject = Instantiate(cropPrefab, transform);
+
+            cropObject.transform.position = new Vector3(transform.position.x, 0 , transform.position.z);
+
+            cropPlanted = cropObject.GetComponent<CropBehaviour>();
+
+            cropPlanted.Plant(seedTool);
         }
     }
 
@@ -88,6 +113,12 @@ public class Land : MonoBehaviour, ITimeTracker
         if(lstatus == LandStatus.Watered)
         {
             int hoursElapse = GameTimeStamp.CompareTimeStamps(timeWatered,timestamp);
+
+            if(cropPlanted != null)
+            {
+                cropPlanted.Grow();
+            }
+
             if(hoursElapse > 24)
             {
                 SwitchLandStatus(LandStatus.Farmland);

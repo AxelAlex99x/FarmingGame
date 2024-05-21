@@ -6,6 +6,8 @@ public class PlayerInteraction : MonoBehaviour
 {
     NewBehaviourScript playerController;
     Land selectedLand = null;
+
+    InteractableObject selectedInteractable = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,17 @@ public class PlayerInteraction : MonoBehaviour
             return;
         }
 
+        if(other.tag == "Item")
+        {
+            selectedInteractable = other.GetComponent<InteractableObject>();
+            return;
+        }
+
+        if(selectedInteractable != null)
+        {
+            selectedInteractable = null;
+        }
+
         if(selectedLand != null)
         {
             selectedLand.Select(false);
@@ -55,11 +68,30 @@ public class PlayerInteraction : MonoBehaviour
 
     public void Interact()
     {
+        if(InventoryManager.Instance.equippeditem != null)
+        {
+            return;
+        }
+        
         if(selectedLand != null)
         {
             selectedLand.Interact();
             return;
         }
         Debug.Log("Not on any land");    
+    }
+
+    public void ItemInteract()
+    {
+        if(InventoryManager.Instance.equippeditem != null)
+        {
+            InventoryManager.Instance.HandToInventory(InventorySlot.InventoryType.Items);
+            return;
+        }
+
+        if(selectedInteractable != null)
+        {
+            selectedInteractable.Pickup();
+        }
     }
 }

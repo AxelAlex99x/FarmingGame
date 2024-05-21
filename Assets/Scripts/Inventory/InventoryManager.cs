@@ -24,7 +24,7 @@ public class InventoryManager : MonoBehaviour
     public Itemdata[] items= new Itemdata[8];
     public Itemdata equippeditem= null;
 
-
+    public Transform handPoint;
     public void InventoryToHand(int slotIndex, InventorySlot.InventoryType inventoryType)
     {
         if (inventoryType == InventorySlot.InventoryType.Items)
@@ -32,6 +32,8 @@ public class InventoryManager : MonoBehaviour
             Itemdata itemToEquip = InventoryManager.Instance.items[slotIndex];
             items[slotIndex] = equippeditem;
             equippeditem = itemToEquip;
+
+            RenderHand();
         }
         else
         {
@@ -55,7 +57,8 @@ public class InventoryManager : MonoBehaviour
                     break;
                 }
             }
-            
+
+            RenderHand();
         }
         else
         {
@@ -70,6 +73,19 @@ public class InventoryManager : MonoBehaviour
             }
         }
         UIManager.Instance.RenderInventory();
+    }
+
+    public void RenderHand()
+    {
+        if(handPoint.childCount > 0)
+        {
+            Destroy(handPoint.GetChild(0).gameObject);
+        }
+        
+        if(equippeditem != null)
+        {
+            Instantiate(equippeditem.gameModel, handPoint);
+        }     
     }
 
     // Start is called before the first frame update

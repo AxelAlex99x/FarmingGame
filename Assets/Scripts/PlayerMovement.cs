@@ -30,6 +30,11 @@ public class NewBehaviourScript : MonoBehaviour
         Move();
 
         Interact();
+
+        if (Input.GetKey(KeyCode.RightAlt))
+        {
+            TimeManager.Instance.Tick();
+        }
     }
 
     public void Interact()
@@ -38,7 +43,11 @@ public class NewBehaviourScript : MonoBehaviour
         {
             playerInteraction.Interact();
         }
-            
+        
+        if(Input.GetButtonDown("Fire2"))
+        {
+            playerInteraction.ItemInteract();
+        }
     }
     public void Move()
     {

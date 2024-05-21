@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1277,6 +1277,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413012585}
   m_CullTransparentMesh: 1
+--- !u!4 &1419863629 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7756552469359408081, guid: d9edc0c1da313394288d0ec0dc0e0e75, type: 3}
+  m_PrefabInstance: {fileID: 627163061}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1474895204
 GameObject:
   m_ObjectHideFlags: 0
@@ -2117,9 +2122,21 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2190051923593412559, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
+      propertyPath: handPoint
+      value: 
+      objectReference: {fileID: 1419863629}
+    - target: {fileID: 2190051923593412559, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
       propertyPath: eqquipedtool
       value: 
       objectReference: {fileID: 11400000, guid: 1c534a4d80549e84ca7f2ddc6ef21af6, type: 2}
+    - target: {fileID: 2190051923593412559, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
+      propertyPath: items.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8ade3d557c7f6dd4a944b3ee5b591e06, type: 2}
+    - target: {fileID: 2190051923593412559, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
+      propertyPath: tools.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7bf72a2bb1e41f54e9d44d7aa365c57b, type: 2}
     - target: {fileID: 2190051923593412559, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
       propertyPath: tools.Array.data[1]
       value: 
