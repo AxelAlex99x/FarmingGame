@@ -90,6 +90,12 @@ public class Land : MonoBehaviour, ITimeTracker
                     if(lstatus == LandStatus.Farmland)
                     SwitchLandStatus(LandStatus.Watered);
                     break;
+                case EquipmentData.ToolType.Hoe:
+                    if(cropPlanted != null)
+                    {
+                        Destroy(cropPlanted.gameObject);
+                    }
+                    break;
             }
             return;
         }
@@ -122,6 +128,14 @@ public class Land : MonoBehaviour, ITimeTracker
             if(hoursElapse > 24)
             {
                 SwitchLandStatus(LandStatus.Farmland);
+            }
+        }
+
+        if(lstatus != LandStatus.Watered && cropPlanted != null)
+        {
+            if(cropPlanted.cropState != CropBehaviour.CropState.Seed)
+            {
+                cropPlanted.Wither();
             }
         }
     }

@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 8554979865546078707}
   - component: {fileID: 2506295404697276759}
   - component: {fileID: 142193311227649813}
+  - component: {fileID: 2742363437212358997}
   m_Layer: 6
   m_Name: Cabbage
   m_TagString: Item
@@ -260,3 +261,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 8ade3d557c7f6dd4a944b3ee5b591e06, type: 2}
+--- !u!135 &2742363437212358997
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8554979865545778643}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

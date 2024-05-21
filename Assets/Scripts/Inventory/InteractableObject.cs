@@ -6,7 +6,7 @@ public class InteractableObject : MonoBehaviour
 {
     public Itemdata item;
 
-    public void Pickup()
+    public virtual void Pickup()
     {
         InventoryManager.Instance.equippeditem = item;
         InventoryManager.Instance.RenderHand();

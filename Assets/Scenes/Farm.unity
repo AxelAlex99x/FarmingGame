@@ -2145,6 +2145,10 @@ PrefabInstance:
       propertyPath: tools.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: e229ce8152fe3294dad85e525dd6c18c, type: 2}
+    - target: {fileID: 2190051923593412559, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
+      propertyPath: tools.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4cf3ecf8c307de4418edb430ff9fc1fe, type: 2}
     - target: {fileID: 2305754634050823008, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
