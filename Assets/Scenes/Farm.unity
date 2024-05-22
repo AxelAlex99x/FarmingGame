@@ -2134,6 +2134,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 8ade3d557c7f6dd4a944b3ee5b591e06, type: 2}
     - target: {fileID: 2190051923593412559, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
+      propertyPath: items.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 13b29dbb01ffe524089f2f93b464548e, type: 2}
+    - target: {fileID: 2190051923593412559, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
       propertyPath: tools.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 7bf72a2bb1e41f54e9d44d7aa365c57b, type: 2}
@@ -2149,6 +2153,62 @@ PrefabInstance:
       propertyPath: tools.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: 4cf3ecf8c307de4418edb430ff9fc1fe, type: 2}
+    - target: {fileID: 2190051923593412559, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
+      propertyPath: itemSlots.Array.data[0].itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 8ade3d557c7f6dd4a944b3ee5b591e06, type: 2}
+    - target: {fileID: 2190051923593412559, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
+      propertyPath: itemSlots.Array.data[0].quantity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190051923593412559, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
+      propertyPath: itemSlots.Array.data[1].itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 13b29dbb01ffe524089f2f93b464548e, type: 2}
+    - target: {fileID: 2190051923593412559, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
+      propertyPath: itemSlots.Array.data[1].quantity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190051923593412559, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
+      propertyPath: toolSlots.Array.data[0].itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 1c534a4d80549e84ca7f2ddc6ef21af6, type: 2}
+    - target: {fileID: 2190051923593412559, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
+      propertyPath: toolSlots.Array.data[0].quantity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190051923593412559, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
+      propertyPath: toolSlots.Array.data[1].itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 3e6779d5e2e63d746bca7ea16b3c5492, type: 2}
+    - target: {fileID: 2190051923593412559, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
+      propertyPath: toolSlots.Array.data[1].quantity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190051923593412559, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
+      propertyPath: toolSlots.Array.data[2].itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: e229ce8152fe3294dad85e525dd6c18c, type: 2}
+    - target: {fileID: 2190051923593412559, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
+      propertyPath: toolSlots.Array.data[2].quantity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190051923593412559, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
+      propertyPath: toolSlots.Array.data[3].itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 4cf3ecf8c307de4418edb430ff9fc1fe, type: 2}
+    - target: {fileID: 2190051923593412559, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
+      propertyPath: toolSlots.Array.data[3].quantity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190051923593412559, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
+      propertyPath: toolSlots.Array.data[4].itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 7bf72a2bb1e41f54e9d44d7aa365c57b, type: 2}
+    - target: {fileID: 2190051923593412559, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
+      propertyPath: toolSlots.Array.data[4].quantity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2305754634050823008, guid: d31a02bf0261ae147b8cc228c5bc6a40, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

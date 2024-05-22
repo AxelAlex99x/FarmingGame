@@ -8,7 +8,7 @@ public class InteractableObject : MonoBehaviour
 
     public virtual void Pickup()
     {
-        InventoryManager.Instance.equippeditem = item;
+        InventoryManager.Instance.EquipEmptySlot(item);
         InventoryManager.Instance.RenderHand();
         Destroy(gameObject);
     }

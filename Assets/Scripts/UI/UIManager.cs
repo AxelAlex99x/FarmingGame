@@ -60,16 +60,16 @@ public class UIManager : MonoBehaviour, ITimeTracker
 
     public void RenderInventory()
     {
-        Itemdata[] inventoryToolSlots= InventoryManager.Instance.tools;
-        Itemdata[] inventoryItemSlots= InventoryManager.Instance.items;
+        ItemSlotData[] inventoryToolSlots= InventoryManager.Instance.GetInventorySlots(InventorySlot.InventoryType.Tools);
+        ItemSlotData[] inventoryItemSlots= InventoryManager.Instance.GetInventorySlots(InventorySlot.InventoryType.Items);
 
         RenderInventoryPanel(inventoryToolSlots,toolSlots);
         RenderInventoryPanel(inventoryItemSlots,itemSlots);
 
-        toolHandSlot.Display(InventoryManager.Instance.eqquipedtool);
-        itemHandSlot.Display(InventoryManager.Instance.equippeditem);
+        toolHandSlot.Display(InventoryManager.Instance.GetEquippedSlot(InventorySlot.InventoryType.Tools));
+        itemHandSlot.Display(InventoryManager.Instance.GetEquippedSlot(InventorySlot.InventoryType.Items));
 
-        Itemdata equippedTool= InventoryManager.Instance.eqquipedtool;
+        Itemdata equippedTool= InventoryManager.Instance.GetEquippedSlotItem(InventorySlot.InventoryType.Tools);
 
         if (equippedTool != null)
         {
@@ -82,7 +82,7 @@ public class UIManager : MonoBehaviour, ITimeTracker
 
     }
 
-    void RenderInventoryPanel(Itemdata[] slots, InventorySlot[] uiSlots)
+    void RenderInventoryPanel(ItemSlotData[] slots, InventorySlot[] uiSlots)
     {
         for(int i = 0;i < uiSlots.Length; i++)
         {
