@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[DefaultExecutionOrder(-10000)]
 public class NewBehaviourScript : MonoBehaviour
 {
     private CharacterController characterController;
     private Animator animator;
     private float moveSpeed = 2f;
+
 
     [Header("Movement System")]
     public float walkSpeed = 2f;
@@ -57,6 +59,13 @@ public class NewBehaviourScript : MonoBehaviour
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
         Vector3 velocity = moveSpeed * Time.deltaTime * direction;
 
+
+        if (!characterController.isGrounded)
+        {
+            velocity.y -= 9.81f * Time.deltaTime; 
+        }
+       
+
         if (Input.GetButton("Sprint")){ 
             moveSpeed = runSpeed;
             animator.SetBool("Running", true);
@@ -66,14 +75,19 @@ public class NewBehaviourScript : MonoBehaviour
             moveSpeed = walkSpeed;
             animator.SetBool("Running", false);
         }
-        
 
-        if(direction.magnitude > 0.1f ) 
+
+        if (direction.magnitude > 0.1f ) 
         {
             transform.rotation = Quaternion.LookRotation(direction);
             characterController.Move(velocity);
+            animator.SetFloat("Speed", velocity.magnitude);
         }
-        animator.SetFloat("Speed",velocity.magnitude);
+        
+        else
+        {
+            animator.SetFloat("Speed", 0f);
+        }
     }
   
 }
