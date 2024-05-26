@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -21,7 +22,7 @@ public class SceneTransitionManager : MonoBehaviour
     {
         if (Instance != null && Instance != this) 
         {
-            Destroy(gameObject);
+            Destroy(gameObject);    
         }
         else
         {
@@ -29,14 +30,16 @@ public class SceneTransitionManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
-
+        
         SceneManager.sceneLoaded += OnLocationLoad;
 
         playerPoint = FindObjectOfType<NewBehaviourScript>().transform;
+
+        
     }
 
     public void SwitchLocation(Location locationToSwitch)
-    {     
+    {
         SceneManager.LoadScene(locationToSwitch.ToString());
     }
 

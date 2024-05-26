@@ -11,7 +11,7 @@ public class InventoryManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(Instance);
+            Destroy(this);
         } else
         {
             Instance = this;

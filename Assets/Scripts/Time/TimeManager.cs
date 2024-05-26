@@ -19,7 +19,7 @@ public class TimeManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(Instance);
+            Destroy(this);
         }
         else
         {
