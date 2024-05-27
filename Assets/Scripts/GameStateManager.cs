@@ -38,6 +38,8 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
     {
         if(SceneTransitionManager.Instance.currentLocation != SceneTransitionManager.Location.Farm) 
         {
+            if(LandManager.farmData == null) { return; }
+            
             List<LandSaveState> landData = LandManager.farmData.Item1;
             List<CropSaveState> cropData = LandManager.farmData.Item2;
 
@@ -135,7 +137,7 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
     {
         GameSaveState save = SaveManager.Load(); 
 
-        SceneTransitionManager.Instance.SwitchLocation(SceneTransitionManager.Location.PlayerHome);
+        
 
         TimeManager.Instance.LoadTime(save.timestamp);
 

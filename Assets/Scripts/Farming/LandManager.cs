@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ObstacleGeneration))]
+
 public class LandManager : MonoBehaviour
 {
     public static LandManager Instance { get; private set; }
@@ -45,6 +47,10 @@ public class LandManager : MonoBehaviour
             ImportLandData(farmData.Item1);
             ImportCropData(farmData.Item2);
         }
+        else
+        {
+            GetComponent<ObstacleGeneration>().GenerateObstacles(landPlots);
+        }
     }
 
     private void OnDestroy()
@@ -73,9 +79,9 @@ public class LandManager : MonoBehaviour
         cropData.RemoveAll(x => x.landID == landID);
     }
 
-    public void OnLandStateChange(int id, Land.LandStatus landStatus, GameTimeStamp lastWatered)
+    public void OnLandStateChange(int id, Land.LandStatus landStatus, GameTimeStamp lastWatered, Land.FarmObstacleStatus obstacleStatus)
     {
-        landData[id] = new LandSaveState(landStatus, lastWatered);
+        landData[id] = new LandSaveState(landStatus, lastWatered, obstacleStatus);
     }
 
     public void OnCropStateChange(int landID, CropBehaviour.CropState cropState, int growth, int health)
@@ -92,7 +98,7 @@ public class LandManager : MonoBehaviour
         {
             LandSaveState landDataToLoad = landDatasetToLoad[i];
 
-            landPlots[i].LoadLandData(landDataToLoad.landStatus, landDataToLoad.lastWatered);
+            landPlots[i].LoadLandData(landDataToLoad.landStatus, landDataToLoad.lastWatered, landDataToLoad.obstacleStatus);
         }
         landData = landDatasetToLoad;
     }
@@ -111,6 +117,7 @@ public class LandManager : MonoBehaviour
         }
         cropData = cropDatasetToLoad;
     }
+
     // Update is called once per frame
     void Update()
     {

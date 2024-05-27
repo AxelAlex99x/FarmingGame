@@ -5,6 +5,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class SceneTransitionManager : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class SceneTransitionManager : MonoBehaviour
     }
 
     public Location currentLocation;
+
+    static readonly Location[] indoor = { Location.PlayerHome };
 
     Transform playerPoint;
 
@@ -39,6 +42,11 @@ public class SceneTransitionManager : MonoBehaviour
         playerPoint = FindObjectOfType<NewBehaviourScript>().transform;
 
         
+    }
+
+    public bool CurrentlyIndoor()
+    {
+        return indoor.Contains(currentLocation);
     }
 
     public void SwitchLocation(Location locationToSwitch)
@@ -84,6 +92,11 @@ public class SceneTransitionManager : MonoBehaviour
             return;
         }
 
+        if(playerPoint == null)
+        {
+            return;
+        }
+
         Transform startPoint = LocationManager.Instance.GetPlayerStartingPosition(oldLocation);
 
         CharacterController playerCharacter = playerPoint.GetComponent<CharacterController>();
@@ -92,6 +105,8 @@ public class SceneTransitionManager : MonoBehaviour
 
         playerPoint.position = startPoint.position;
         playerPoint.rotation = startPoint.rotation;
+        
+       
 
         playerCharacter.enabled = true;
 
