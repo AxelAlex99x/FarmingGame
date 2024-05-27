@@ -41,6 +41,16 @@ public class NewBehaviourScript : MonoBehaviour
 
     public void Interact()
     {
+        if (Input.GetButtonDown("InventoryToggle"))
+        {
+            UIManager.Instance.ToggleInventoryPanel();
+        }
+
+        if (UIManager.Instance.inventoryPanel.activeSelf)
+        {       
+            return;
+        }
+
         if (Input.GetButtonDown("Fire1"))
         {
             playerInteraction.Interact();

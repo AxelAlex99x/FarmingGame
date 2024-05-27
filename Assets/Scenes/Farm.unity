@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 4ba346dd2c0f47642b719f7aca181250, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -1833,7 +1833,7 @@ Transform:
   m_GameObject: {fileID: 336180168}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.299, y: 0.5, z: -24.78}
+  m_LocalPosition: {x: 2.299, y: 0.157, z: -24.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2385,8 +2385,8 @@ Transform:
   m_GameObject: {fileID: 389874191}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.96, y: 0.75, z: -31.3}
-  m_LocalScale: {x: 2.6604, y: 1, z: 1}
+  m_LocalPosition: {x: 2.41, y: 0.75, z: -30.61}
+  m_LocalScale: {x: 5.938787, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1770407963}
@@ -10561,6 +10561,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Essentials
       objectReference: {fileID: 0}
+    - target: {fileID: 7941368455170248467, guid: 1108346aa5d654b4aa8e9e249daaa992, type: 3}
+      propertyPath: toolSlots.Array.data[4].quantity
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10575,6 +10579,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1878878292}
+  - component: {fileID: 1878878293}
   m_Layer: 0
   m_Name: Farming Area
   m_TagString: Untagged
@@ -10633,6 +10638,21 @@ Transform:
   - {fileID: 779422436}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1878878293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878878291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a51a56e34ce82b49a094598d163fafe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  landPlots: []
+  landData: []
+  cropData: []
 --- !u!1001 &1882431580
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -18,6 +18,8 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public ItemIndex itemIndex;
+
     [Header("Tools")]
     [SerializeField]
     private ItemSlotData[] toolSlots = new ItemSlotData[8];
@@ -30,6 +32,17 @@ public class InventoryManager : MonoBehaviour
     private ItemSlotData equippedItemSlot = null;
 
     public Transform handPoint;
+
+    public void LoadInventory(ItemSlotData[] toolSlots, ItemSlotData equippedToolSlot, ItemSlotData[] itemSlots, ItemSlotData equippedItemSlot)
+    {
+        this.toolSlots = toolSlots;
+        this.equippedToolSlot = equippedToolSlot;
+        this.itemSlots = itemSlots;
+        this.equippedItemSlot = equippedItemSlot;
+
+        UIManager.Instance.RenderInventory();
+    }
+
     public void InventoryToHand(int slotIndex, InventorySlot.InventoryType inventoryType)
     {
         ItemSlotData handToEquip = equippedToolSlot;
@@ -56,18 +69,20 @@ public class InventoryManager : MonoBehaviour
 
             inventoryToAlter[slotIndex] = new ItemSlotData(handToEquip);
 
-            EquipHandSlot(slotToEquip);
+            if (slotToEquip.IsEmpty())
+            {
+                handToEquip.Empty();
+            }
+            else
+            {
+                EquipHandSlot(slotToEquip);
+            }
         }
 
         if (inventoryType == InventorySlot.InventoryType.Items)
-        {
-           // equippedItemSlot = handToEquip;
+        {        
             RenderHand();
         }
-       /* else
-        {
-            equippedToolSlot = handToEquip;
-        }*/
 
         UIManager.Instance.RenderInventory();
     }

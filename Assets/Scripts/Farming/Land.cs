@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Land : MonoBehaviour, ITimeTracker
 {
+    public int id;
     public enum LandStatus
     {
         Soil, Farmland, Watered
@@ -18,6 +19,7 @@ public class Land : MonoBehaviour, ITimeTracker
     public GameObject select;
 
     GameTimeStamp timeWatered;
+    GameTimeStamp timeFarmland;
 
     [Header("Crops")]
     public GameObject cropPrefab;
@@ -35,9 +37,12 @@ public class Land : MonoBehaviour, ITimeTracker
         TimeManager.Instance.RegisterTracker(this);
     }
 
-    public void SwitchLandStatus(LandStatus statusToSwitch)
+    public void LoadLandData(LandStatus statusToSwitch, GameTimeStamp lastWatered)
     {
         lstatus = statusToSwitch;
+        timeWatered = lastWatered;
+
+
         Material materialToSwitch = soilMat;
 
 
@@ -53,12 +58,41 @@ public class Land : MonoBehaviour, ITimeTracker
 
             case LandStatus.Watered:
                 materialToSwitch = wateredMat;
+                break;
+        }
+
+
+        renderer.material = materialToSwitch;
+     
+    }
+
+    public void SwitchLandStatus(LandStatus statusToSwitch)
+    {
+        lstatus = statusToSwitch;
+        Material materialToSwitch = soilMat;
+
+
+        switch (statusToSwitch)
+        {
+            case LandStatus.Soil:
+                materialToSwitch = soilMat;
+                break;
+
+            case LandStatus.Farmland:
+                materialToSwitch = farmLandMat;
+                timeFarmland = TimeManager.Instance.GetGameTimestamp();
+                break;
+
+            case LandStatus.Watered:
+                materialToSwitch = wateredMat;
                 timeWatered = TimeManager.Instance.GetGameTimestamp();
                 break;
         }
 
 
         renderer.material = materialToSwitch;
+
+        LandManager.Instance.OnLandStateChange(id, lstatus, timeWatered);
     }
 
     public void Select(bool toggle)
@@ -93,7 +127,7 @@ public class Land : MonoBehaviour, ITimeTracker
                 case EquipmentData.ToolType.Hoe:
                     if(cropPlanted != null)
                     {
-                        Destroy(cropPlanted.gameObject);
+                        cropPlanted.RemoveCrop();
                     }
                     break;
             }
@@ -104,16 +138,23 @@ public class Land : MonoBehaviour, ITimeTracker
 
         if(seedTool != null && lstatus != LandStatus.Soil && cropPlanted == null)
         {
-            GameObject cropObject = Instantiate(cropPrefab, transform);
+            SpawnCrop();
 
-            cropObject.transform.position = new Vector3(transform.position.x, 0 , transform.position.z);
-
-            cropPlanted = cropObject.GetComponent<CropBehaviour>();
-
-            cropPlanted.Plant(seedTool);
+            cropPlanted.Plant(id, seedTool);
 
             InventoryManager.Instance.ConsumeItem(InventoryManager.Instance.GetEquippedSlot(InventorySlot.InventoryType.Tools));
         }
+    }
+
+    public CropBehaviour SpawnCrop()
+    {
+        GameObject cropObject = Instantiate(cropPrefab, transform);
+
+        cropObject.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+
+        cropPlanted = cropObject.GetComponent<CropBehaviour>();
+
+        return cropPlanted;
     }
 
     public void ClockUpdate(GameTimeStamp timestamp)
@@ -137,8 +178,22 @@ public class Land : MonoBehaviour, ITimeTracker
         {
             if(cropPlanted.cropState != CropBehaviour.CropState.Seed)
             {
-                cropPlanted.Wither();
+                cropPlanted.Wither();              
             }
         }
+        
+        /*if(lstatus == LandStatus.Farmland)
+        {
+            int hoursElapse = GameTimeStamp.CompareTimeStamps(timeFarmland, timestamp);
+            if(hoursElapse > 72 && (!cropPlanted || cropPlanted.cropState == CropBehaviour.CropState.Wilted)               )
+            {
+                SwitchLandStatus(LandStatus.Soil);
+            }
+        }*/
+    }
+
+    private void OnDestroy()
+    {
+        TimeManager.Instance.UnregisteredTracker(this);
     }
 }

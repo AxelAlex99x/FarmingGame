@@ -41,6 +41,11 @@ public class TimeManager : MonoBehaviour
         
     }
 
+    public void LoadTime(GameTimeStamp timestamp)
+    {
+        this.timeStamp = new GameTimeStamp(timestamp);
+    }
+
     IEnumerator TimeUpdate()
     {
         while (true)
@@ -59,6 +64,28 @@ public class TimeManager : MonoBehaviour
         }
         
         UpdateSunMovement();
+    }
+
+    public void SkipTime(GameTimeStamp timetoSkipTo)
+    {
+        int timeToSkipInMinutes = GameTimeStamp.TimestampInMinutes(timetoSkipTo);
+        Debug.Log("Time to skip to:" +timeToSkipInMinutes);
+        int timeNowInMinutes = GameTimeStamp.TimestampInMinutes(timeStamp);
+        Debug.Log("Time now: "+timeNowInMinutes);
+
+        int differenceInMinutes = timeToSkipInMinutes - timeNowInMinutes;
+
+        Debug.Log(differenceInMinutes + "mins will be in advn");
+
+        if(differenceInMinutes <= 0) 
+        {
+            return;
+        }
+
+        for(int i = 0;  i < differenceInMinutes; i++)
+        {
+            Tick();
+        }
     }
 
     void UpdateSunMovement()

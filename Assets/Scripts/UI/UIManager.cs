@@ -23,12 +23,16 @@ public class UIManager : MonoBehaviour, ITimeTracker
     public HandInventorySlot itemHandSlot;
     public InventorySlot[] itemSlots;
 
-    
-
     public TextMeshProUGUI itemNameText;
     public TextMeshProUGUI itemDescriptionText;
 
+    [Header("Screen Transitions")]
+    public GameObject fadeIn;
+    public GameObject fadeOut;
 
+
+    [Header("Yes No Prompt")]
+    public YesNoPrompt yesNoPrompt;
 
     private void Awake()
     {
@@ -48,6 +52,33 @@ public class UIManager : MonoBehaviour, ITimeTracker
         AssignSlotIndexes();
 
         TimeManager.Instance.RegisterTracker(this);
+    }
+
+    public void TriggerYesNoPrompt(string message, System.Action onYesCallBack)
+    {
+        yesNoPrompt.gameObject.SetActive(true);
+
+        yesNoPrompt.CreatePrompt(message, onYesCallBack);
+    }
+
+    public void FadeOutScreen()
+    {
+        fadeOut.SetActive(true);
+    }
+
+    public void FadeInScreen()
+    {
+        fadeIn.SetActive(true);
+    }
+    public void OnFadeInComplete()
+    {
+        fadeIn.SetActive(false);
+    }
+
+    public void ResetFadeDefaults()
+    {
+        fadeOut.SetActive(false);
+        fadeIn.SetActive(true);
     }
 
     public void AssignSlotIndexes()

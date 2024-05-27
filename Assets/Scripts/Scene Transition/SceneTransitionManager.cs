@@ -18,6 +18,9 @@ public class SceneTransitionManager : MonoBehaviour
     public Location currentLocation;
 
     Transform playerPoint;
+
+    bool screenFadedOut;
+
     private void Awake()
     {
         if (Instance != null && Instance != this) 
@@ -40,7 +43,34 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void SwitchLocation(Location locationToSwitch)
     {
+
+        //SceneManager.LoadScene(locationToSwitch.ToString());
+        UIManager.Instance.FadeOutScreen();
+        screenFadedOut = false;
+        StartCoroutine(ChangeScene(locationToSwitch));
+    }
+
+    IEnumerator ChangeScene(Location locationToSwitch)
+    {
+        CharacterController playerCharacter = playerPoint.GetComponent<CharacterController>();
+
+        playerCharacter.enabled = false;
+        
+        while(!screenFadedOut)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        screenFadedOut = false;
+
+        UIManager.Instance.ResetFadeDefaults();
+
         SceneManager.LoadScene(locationToSwitch.ToString());
+    }
+
+    public void OnFadeOutComplete()
+    {
+        screenFadedOut = true;
     }
 
     public void OnLocationLoad(Scene scene, LoadSceneMode mode)
