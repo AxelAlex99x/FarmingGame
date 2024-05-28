@@ -156,10 +156,8 @@ public class UIManager : MonoBehaviour, ITimeTracker
             itemInfoBox.SetActive(false);
             return;
         }
-        if(inventoryPanel.activeSelf)
-        {
-            itemInfoBox.SetActive(true);
-        }    
+
+        itemInfoBox.SetActive(true);       
         itemNameText.text = data.name;
         itemDescriptionText.text = data.description;
     }
