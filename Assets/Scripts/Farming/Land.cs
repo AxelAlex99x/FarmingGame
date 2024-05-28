@@ -194,11 +194,15 @@ public class Land : MonoBehaviour, ITimeTracker
             switch (toolType)
             {
                 case EquipmentData.ToolType.Shovel:
+                    Music.Instance.PlaySfx1();
                     SwitchLandStatus(LandStatus.Farmland);
                     break;
                 case EquipmentData.ToolType.WateringCan:
                     if(lstatus == LandStatus.Farmland)
-                    SwitchLandStatus(LandStatus.Watered);
+                    {
+                        Music.Instance.PlaySfx2();
+                        SwitchLandStatus(LandStatus.Watered);
+                    }
                     break;
                 case EquipmentData.ToolType.Hoe:
                     if(cropPlanted != null)

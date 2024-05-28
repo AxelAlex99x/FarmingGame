@@ -1,47 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Music : MonoBehaviour
 {
+    public static Music Instance { get; private set; }
 
-    [SerializeField]
-    AudioSource music;
-    
-
-    public void OnMusic()
+    private void Awake()
     {
-        music.UnPause();
-    }
-
-    public void OffMusic()
-    {
-        music.Pause();
-    }
-
-    public void ToggleMusic()
-    {
-        if (music.isPlaying)
+        if(Instance != null &&  Instance != this)
         {
-           OffMusic();
+            Destroy(this);
         }
         else
         {
-            OnMusic();
+            Instance = this;
         }
     }
 
-
-    // Start is called before the first frame update
-    void Start()
+    public AudioSource sound;
+    public AudioClip sfx1, sfx2;
+    
+    public void PlaySfx1()
     {
-        
+        sound.clip = sfx1;
+        sound.Play();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlaySfx2()
     {
-        
+        sound.clip = sfx2;
+        sound.Play();
     }
 }

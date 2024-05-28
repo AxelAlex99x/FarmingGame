@@ -143,8 +143,16 @@ public class UIManager : MonoBehaviour, ITimeTracker
 
     public void ToggleInventoryPanel()
     {
-        inventoryPanel.SetActive(!inventoryPanel.activeSelf);
-        RenderInventory();
+        bool isActive = inventoryPanel.activeSelf;
+        inventoryPanel.SetActive(!isActive);
+        if (!isActive)
+        {
+            RenderInventory();
+        }
+        else
+        {
+            DisplayItemInfo(null);
+        }
     }
 
     public void DisplayItemInfo(Itemdata data)
