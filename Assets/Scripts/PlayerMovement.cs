@@ -60,6 +60,11 @@ public class NewBehaviourScript : MonoBehaviour
         {
             playerInteraction.ItemInteract();
         }
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            playerInteraction.ItemKeep();
+        }
     }
     public void Move()
     {

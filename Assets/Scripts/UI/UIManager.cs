@@ -23,6 +23,8 @@ public class UIManager : MonoBehaviour, ITimeTracker
     public HandInventorySlot itemHandSlot;
     public InventorySlot[] itemSlots;
 
+    [Header("Item Info Box")]
+    public GameObject itemInfoBox;
     public TextMeshProUGUI itemNameText;
     public TextMeshProUGUI itemDescriptionText;
 
@@ -33,6 +35,12 @@ public class UIManager : MonoBehaviour, ITimeTracker
 
     [Header("Yes No Prompt")]
     public YesNoPrompt yesNoPrompt;
+
+    [Header("Player Stats")]
+    public TextMeshProUGUI moneyText;
+
+    [Header("Shop")]
+    public ShopListingManager shopListingManager;
 
     private void Awake()
     {
@@ -50,6 +58,8 @@ public class UIManager : MonoBehaviour, ITimeTracker
     {
         RenderInventory();
         AssignSlotIndexes();
+        RenderPlayerStats();
+        DisplayItemInfo(null);
 
         TimeManager.Instance.RegisterTracker(this);
     }
@@ -143,8 +153,13 @@ public class UIManager : MonoBehaviour, ITimeTracker
         {
             itemNameText.text = "";
             itemDescriptionText.text = "";
+            itemInfoBox.SetActive(false);
             return;
         }
+        if(inventoryPanel.activeSelf)
+        {
+            itemInfoBox.SetActive(true);
+        }    
         itemNameText.text = data.name;
         itemDescriptionText.text = data.description;
     }
@@ -166,5 +181,16 @@ public class UIManager : MonoBehaviour, ITimeTracker
         string dayOfTheWeek = timestamp.GetDayOfTheWeek().ToString();
 
         dateText.text = season + " " + day + " (" + dayOfTheWeek + ")";
+    }
+
+    public void RenderPlayerStats()
+    {
+        moneyText.text = PlayerStats.Money + PlayerStats.CURRENCY;
+    }
+
+    public void OpenShop(List<Itemdata> shopItems)
+    {
+        shopListingManager.gameObject.SetActive(true);
+        shopListingManager.RenderShop(shopItems);
     }
 }

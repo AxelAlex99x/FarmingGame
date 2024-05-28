@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static InventorySlot;
 using static UnityEditor.Progress;
 
 public class InventoryManager : MonoBehaviour
@@ -41,6 +42,7 @@ public class InventoryManager : MonoBehaviour
         this.equippedItemSlot = equippedItemSlot;
 
         UIManager.Instance.RenderInventory();
+        RenderHand();
     }
 
     public void InventoryToHand(int slotIndex, InventorySlot.InventoryType inventoryType)
@@ -132,6 +134,26 @@ public class InventoryManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void ShopToInventory(ItemSlotData itemSlotToMove)
+    {
+        ItemSlotData[] inventoryToAlter = IsTool(itemSlotToMove.itemData)? toolSlots:itemSlots;
+
+        if (!StackItemToInventory(itemSlotToMove, inventoryToAlter))
+        {
+            for (int i = 0; i < inventoryToAlter.Length; i++)
+            {
+                if (inventoryToAlter[i].IsEmpty())
+                {
+                    inventoryToAlter[i] = new ItemSlotData(itemSlotToMove);
+                    break;
+                }
+            }
+        }
+
+        UIManager.Instance.RenderInventory();
+        RenderHand();
     }
 
     public void RenderHand()

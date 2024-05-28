@@ -15,4 +15,4 @@ MonoBehaviour:
   description: 
   thumbnail: {fileID: -365697628, guid: a8d20dedf8a90c2479df976d270fb2d1, type: 3}
   gameModel: {fileID: 0}
-  toolType: 0
+  toolType: 2

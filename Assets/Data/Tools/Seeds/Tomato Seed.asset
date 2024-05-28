@@ -15,6 +15,7 @@ MonoBehaviour:
   description: 
   thumbnail: {fileID: 862848859, guid: a8d20dedf8a90c2479df976d270fb2d1, type: 3}
   gameModel: {fileID: 0}
+  cost: 400
   DaysToGrow: 9
   cropToYield: {fileID: 11400000, guid: 2f900a8ad94f7874faf211c1c382166f, type: 2}
   seedling: {fileID: 3217085965595450377, guid: 23141a60e69bd624d802850fe8af2bff, type: 3}
